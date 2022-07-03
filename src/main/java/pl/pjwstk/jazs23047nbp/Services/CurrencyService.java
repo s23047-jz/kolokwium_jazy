@@ -29,7 +29,6 @@ public class CurrencyService {
         ResponseEntity<String> currency = restTemplate.getForEntity("http://api.nbp.pl/api/exchangerates/rates/a/" + code
                 +"/"+startDate+"/"+endDate+"/", String.class);
 
-
         return " " + currency;
 
     }
