@@ -19,7 +19,7 @@ public class CurrencyController {
     }
 
     @GetMapping
-    public Currency getAllCurrencies() {
+    public String getAllCurrencies() {
         return currencyService.getCurrencies();
     }
 
