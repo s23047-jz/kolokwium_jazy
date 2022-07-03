@@ -23,8 +23,8 @@ public class CurrencyService {
         return java.util.Currency.getInstance(response.getBody());
     }
 
-    public java.util.Currency getCurrency(String code, String startDate, String endDate) {
-        Currency exchange = restTemplate.getForEntity("http://api.nbp.pl/api/exchangerates/rates/a/" + code
+    public java.util.Currency getGoldValue(String startDate, String endDate) {
+        Currency exchange = restTemplate.getForEntity("http://api.nbp.pl/api/cenyzlota"
                 +"/"+startDate+"/"+endDate+"/", Currency.class).getBody();
         return exchange;
     }

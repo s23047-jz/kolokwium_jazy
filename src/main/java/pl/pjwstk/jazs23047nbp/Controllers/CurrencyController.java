@@ -23,8 +23,8 @@ public class CurrencyController {
         return currencyService.getCurrencies();
     }
 
-    @GetMapping("/{code}/{startDate}/{endDate}")
-    public Currency getCurrency(@PathVariable String code, @PathVariable String startDate, @PathVariable String endDate) {
-        return currencyService.getCurrency(code, startDate, endDate);
+    @GetMapping("/{startDate}/{endDate}")
+    public Currency getCurrency(@PathVariable String startDate, @PathVariable String endDate) {
+        return currencyService.getGoldValue(startDate, endDate);
     }
 }
