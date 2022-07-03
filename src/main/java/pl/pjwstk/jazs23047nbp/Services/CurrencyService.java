@@ -6,6 +6,7 @@ import org.springframework.web.client.RestTemplate;
 import pl.pjwstk.jazs23047nbp.Repositories.CurrencyRepository;
 
 import java.util.Currency;
+import java.util.List;
 
 @Service
 public class CurrencyService {
@@ -18,14 +19,18 @@ public class CurrencyService {
         this.restTemplate = restTemplate;
     }
 
-    public java.util.Currency getCurrencies() {
+    public Currency getCurrencies() {
         ResponseEntity<String> response = restTemplate.getForEntity("http://api.nbp.pl/api/exchangerates/tables/a/", String.class);
-        return java.util.Currency.getInstance(response.getBody());
+        return Currency.getInstance(response.getBody());
     }
 
-    public java.util.Currency getGoldValue(String startDate, String endDate) {
-        Currency exchange = restTemplate.getForEntity("http://api.nbp.pl/api/cenyzlota"
+    public String getGoldValue(String code, String startDate, String endDate) {
+        Object goldValue = restTemplate.getForEntity("http://api.nbp.pl/api/cenyzlota"
                 +"/"+startDate+"/"+endDate+"/", Currency.class).getBody();
-        return exchange;
+        Object currency = restTemplate.getForEntity("http://api.nbp.pl/api/exchangerates/rates/a/" + code
+                +"/"+startDate+"/"+endDate+"/", Currency.class).getBody();
+
+        return "ss " + currency;
+
     }
 }
